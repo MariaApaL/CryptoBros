@@ -1,17 +1,17 @@
 .hub span:nth-child(2) {
     background: #FF9900;
     color: #000000;
-    border-radius: 1vw;
-    padding: 0 1vw 1vw 1vw;
+    border-radius: 5px;
+    padding: 3px;
     display: inline-block;
   }
   .hub {
     display: block;
     font-family: sans-serif;
     font-weight: bold;
-    font-size: 9vw;
+    font-size: 100%;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    text-align: left;
+    transform: translate(0%, -50%);
   } 
