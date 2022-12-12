@@ -1,0 +1,14 @@
+diff a/src/app/componentes/cabecera/cabecera.component.scss b/src/app/componentes/cabecera/cabecera.component.scss	(rejected hunks)
+@@ -5,6 +5,12 @@
+   padding: 3px;
+   display: inline-block;
+ }
++
++.hub{
++  
++}
++
++/*
+ .hub {
+   display: block;
+   font-family: sans-serif;
