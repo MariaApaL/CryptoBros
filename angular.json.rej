@@ -1,0 +1,11 @@
+diff a/angular.json b/angular.json	(rejected hunks)
+@@ -136,7 +136,8 @@
+   "cli": {
+     "schematicCollections": [
+       "@ionic/angular-toolkit"
+-    ]
++    ],
++    "analytics": false
+   },
+   "schematics": {
+     "@ionic/angular-toolkit:component": {
