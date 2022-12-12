@@ -5,7 +5,15 @@
   padding: 3px;
   display: inline-block;
 }
-.hub {
+
+.hub{
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  text-align: left;
+}
+
+/*.hub {
   display: block;
   font-family: sans-serif;
   font-weight: bold;
@@ -14,4 +22,4 @@
   top: 50%;
   text-align: left;
   transform: translate(0%, -50%);
-} 
+} */
