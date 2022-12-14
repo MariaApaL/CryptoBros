@@ -1,6 +1,62 @@
 <app-header titulo="Inicio"></app-header>
+
 <ion-content>
-    <ion-text color="primary">
-        <h1>Esta es la página de Inicio</h1>
-    </ion-text>
+
+    <ion-card>
+        <ion-item>
+            <ion-avatar slot="end">
+                <img src="../../../assets/pictures/UsuarioPrueba.png" alt="Avatar">
+            </ion-avatar>
+            <ion-label>
+                <ion-card-title>INICIO</ion-card-title>
+                <ion-card-subtitle>Hola, Hugo</ion-card-subtitle>
+            </ion-label>
+        </ion-item>
+    </ion-card>
+
+    <ion-card>
+
+        <ion-item lines="none">
+            <ion-card-header>
+                <ion-card-subtitle>Tu saldo</ion-card-subtitle>
+                <ion-card-title>50,45€</ion-card-title>
+            </ion-card-header>
+        </ion-item>
+        
+        <ion-item class="ion-align-items-center ion-justify-content-center">
+            <ion-card-content>
+                <ion-img src="../../../assets/pictures/GraficaPrueba.png"></ion-img>
+            </ion-card-content>
+        </ion-item>
+
+    </ion-card>
+
+    <ion-card>
+        <ion-item lines="none">
+            <ion-card-header>
+                <ion-card-subtitle>Top Cryptomonedas</ion-card-subtitle>
+            </ion-card-header>
+        </ion-item>
+        <ion-item>
+            <ion-list> <!--Agregár aquí un NgFor para recorrer el Top-->
+                <ion-item>
+                    <ion-avatar slot="start">
+                        <img src="../../../assets/pictures/Bitcoin.svg.png" />
+                    </ion-avatar>
+                    <ion-text>
+                        <h1>Bitcoin</h1>
+                    </ion-text>
+                    <ion-text color="primary" slot="end">
+                        <h4>4,5%</h4>
+                    </ion-text>
+                    <ion-icon name="trending-up-sharp" slot="end" color="success"></ion-icon>
+                </ion-item>
+            </ion-list>
+        </ion-item>
+    </ion-card>
+
+    <ion-button (click)="obtenerDatos()" expand="block">
+        Click me
+    </ion-button>
+
 </ion-content>

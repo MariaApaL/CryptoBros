@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BinanceService } from '../../services/binance.service';
 
 @Component({
   selector: 'app-inicio',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./inicio.page.scss'],
 })
 export class InicioPage implements OnInit {
+  
 
-  constructor() { }
+  public datos:any;
+
+  constructor(public binance:BinanceService) { }
 
   ngOnInit() {
   }
+
+  obtenerDatos(){
+    this.binance.obtenerDatos()
+  }
+
+
 
 }
