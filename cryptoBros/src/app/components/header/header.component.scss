@@ -1,0 +1,13 @@
+h3{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 100%;
+    margin-left: 5%;
+}
+
+h3>span{ 
+    color: black;
+    background-color:var(--ion-color-primary);
+    border-radius: 5%;
+    padding: 2px;
+}
