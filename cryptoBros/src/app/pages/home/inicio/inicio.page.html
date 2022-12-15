@@ -34,22 +34,25 @@
     <ion-card>
         <ion-item lines="none">
             <ion-card-header>
-                <ion-card-subtitle>Top Cryptomonedas</ion-card-subtitle>
+                <ion-card-subtitle>Top 5 Cryptomonedas</ion-card-subtitle>
             </ion-card-header>
         </ion-item>
-        <ion-item>
-            <ion-list> <!--Agregár aquí un NgFor para recorrer el Top-->
-                <ion-item>
+        <ion-item> 
+            <ion-list>
+                <ion-item *ngFor="let coin of topCoins; let i = index"> <!--Mostramos el top 5 recorriendo el Array topCoins-->
                     <ion-avatar slot="start">
-                        <img src="../../../assets/pictures/Bitcoin.svg.png" />
+                        <img src= {{coin.image}} />
                     </ion-avatar>
                     <ion-text>
-                        <h1>Bitcoin</h1>
+                        <h1>{{coin.name}}</h1>
                     </ion-text>
                     <ion-text color="primary" slot="end">
-                        <h4>4,5%</h4>
+                        <p>{{coin.price_change_percentage_24h}}%</p>
                     </ion-text>
-                    <ion-icon name="trending-up-sharp" slot="end" color="success"></ion-icon>
+                    <!--Si es positivo la FLECHA sale verde y hacia arriba-->
+                    <ion-icon *ngIf="coin.price_change_percentage_24h > 0" name="trending-up-sharp" slot="end" color="success"></ion-icon> 
+                    <!--Si es negativo la FLECHA sale roja y hacia abajo-->
+                    <ion-icon *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp" slot="end" color="danger"></ion-icon>
                 </ion-item>
             </ion-list>
         </ion-item>
