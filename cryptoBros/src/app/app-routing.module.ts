@@ -12,10 +12,6 @@ const routes: Routes = [
   {
     path: 'home', //URL PAGINA PRINCIPAL
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
-  {
-    path: 'cartera',
-    loadChildren: () => import('./pages/cartera/cartera.module').then( m => m.CarteraPageModule)
   }
 ];
 
