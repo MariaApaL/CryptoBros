@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+//Es un componente que ya trae ionic y sirve para navegar entre paginas
 import { NavController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-login',
