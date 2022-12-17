@@ -9,3 +9,11 @@ h3 {
     width: 100%;
   
 }
+
+ion-button .password {
+    --padding-end: 0;
+  }
+  
+  ion-icon .eye-icon{
+    font-size: 20px;
+  }

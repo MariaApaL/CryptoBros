@@ -11,10 +11,11 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
-
-
-  constructor(private navCtrl: NavController) {}
+   
+  constructor(private navCtrl: NavController) { }
+  passwordIcon = 'eye-off';
+  passwordType = 'password';
+ 
 
   ngOnInit() {
   }
@@ -27,6 +28,13 @@ export class LoginPage implements OnInit {
     // const email = this.email;
     // const password = this.password;
     console.log("enviando datos");
-  
+   }
+
+  //Método para el icono del ojo en la contraseña
+  passwordOn() {
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
+
+
 }
