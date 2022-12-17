@@ -1,0 +1,9 @@
+INFORMACIÓN DE LA CARPETA COMPONENTES
+
+¿Para que sirve?
+    En ella guardaremos todos los componentes, en principio de html y ts, que usaremos varias veces (EJ: Headers, Footers, ion-cards...).
+    Cualquier cosa que usemos más de una vez, podemos guardar y con una simple línea de código, podemos añadirla a otras páginas.
+
+¿Para qué es el Components.module.ts?
+    En este archivo, deberemos añadir en la parte de 'declarations' los componentes a declarar y también deberemos ponerlo en 'export' para 
+    poder exportarlos a otros archivos fuera de la carpeta.

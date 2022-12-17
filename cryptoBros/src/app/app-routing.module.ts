@@ -12,7 +12,12 @@ const routes: Routes = [
   {
     path: 'home', //URL PAGINA PRINCIPAL
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'cryptos',
+    loadChildren: () => import('./pages/home/inicio/cryptos/cryptos.module').then( m => m.CryptosPageModule)
   }
+
 ];
 
 @NgModule({

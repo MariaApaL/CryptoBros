@@ -39,21 +39,37 @@
         </ion-item>
         <ion-item> 
             <ion-list>
-                <ion-item *ngFor="let coin of topCoins; let i = index"> <!--Mostramos el top 5 recorriendo el Array topCoins-->
-                    <ion-avatar slot="start">
-                        <img src= {{coin.image}} />
-                    </ion-avatar>
-                    <ion-text>
-                        <h1>{{coin.name}}</h1>
-                    </ion-text>
-                    <ion-text color="primary" slot="end">
-                        <p>{{coin.price_change_percentage_24h}}%</p>
-                    </ion-text>
-                    <!--Si es positivo la FLECHA sale verde y hacia arriba-->
-                    <ion-icon *ngIf="coin.price_change_percentage_24h > 0" name="trending-up-sharp" slot="end" color="success"></ion-icon> 
-                    <!--Si es negativo la FLECHA sale roja y hacia abajo-->
-                    <ion-icon *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp" slot="end" color="danger"></ion-icon>
-                </ion-item>
+                <ion-grid gap="0">
+                    <ion-row wrap="nowrap" *ngFor="let coin of topCoins; let i = index">
+                        <ion-col size="auto" justify-content="center">
+                            <ion-avatar>
+                                <img src= {{coin.image}} />
+                            </ion-avatar>
+                        </ion-col>
+                        <ion-col size="auto" justify-content="center">
+                            <ion-text>
+                                <p><b>{{coin.name}}</b></p>
+                            </ion-text>
+                        </ion-col>
+                        <ion-col size="auto" justify-content="center">
+                            <ion-text color="primary">
+                                <p>{{coin.price_change_percentage_24h}}%</p>
+                            </ion-text>
+                        </ion-col>
+                        <ion-col size="auto" justify-content="center">
+                            <!--Si es positivo la FLECHA sale verde y hacia arriba-->
+                            <ion-icon size="large" *ngIf="coin.price_change_percentage_24h > 0" name="trending-up-sharp" color="success"></ion-icon> 
+                            <!--Si es negativo la FLECHA sale roja y hacia abajo-->
+                            <ion-icon size="large" *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp"color="danger"></ion-icon>
+                            <!--Mostramos el top 5 recorriendo el Array topCoins-->
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                
+                <ion-button routerLink="/cryptos" size="default" fill="clear">
+                    Ver todas
+                </ion-button>
             </ion-list>
         </ion-item>
     </ion-card>
