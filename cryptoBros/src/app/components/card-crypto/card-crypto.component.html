@@ -1,6 +1,6 @@
 <ion-item>
   <ion-grid gap="4" fixed>
-      <ion-row size="12" *ngFor="let coin of coins;">
+      <ion-row size="12" *ngFor="let coin of coins | filtroBusqueda:textoFiltro | filtroAlfabetico: ordenFiltro">
           <ion-col size="auto" justify-content="center">
               <ion-avatar size="5">
                   <img src= {{coin.image}}/>

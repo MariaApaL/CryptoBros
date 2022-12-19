@@ -22,13 +22,24 @@ export class CoinGeckoService {
     });
   }
 
-  obtenerListaCryptoTodo(cantidad:number, pagina:number, grafico:boolean){
+  obtenerListaCryptoPorPaginas(cantidad:number, pagina:number, grafico:boolean){
     return this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets', {
       params:{
         vs_currency:'eur', //Moneda
         order:'market_cap_desc', //Modo de ordenar
         per_page:cantidad, //Cantidad por página
         page:pagina, //num página
+        sparkline:grafico //MiniGráfico
+      }
+    });
+  }
+
+  obtenerListaCryptoTodo(grafico:boolean){
+    return this.http.get<Coin[]>('https://api.coingecko.com/api/v3/coins/markets', {
+      params:{
+        vs_currency:'eur', //Moneda
+        order:'market_cap_desc', //Modo de ordenar
+        per_page:250, //Cantidad por página
         sparkline:grafico //MiniGráfico
       }
     });

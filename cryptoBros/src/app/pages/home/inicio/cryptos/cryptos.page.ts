@@ -21,23 +21,28 @@ export class CryptosPage implements OnInit {
   public orden: string = '';
   public cryptos: any[] = [];
 
-  //Obtenemos el infinite scroll del VIEW
-  @ViewChild('infiniteScroll') infinito!: IonInfiniteScroll;
-
   constructor(private coinGecko:CoinGeckoService) { }
 
   async ngOnInit() {   
     this.obtenerTodas(); 
   }
 
+  //Función para buscar por palabra
+  buscarCrypto(event:any){
+    this.busqueda = event.detail.value; //Almacena la búsqueda para aplicar el filtro 'pipe'
+  }
+
+  //Función para ordenar
+  OrdenarCrypto(event:any){
+    this.orden = event.detail.value;
+    console.log(this.orden);
+  }
 
   //Función que se ejecuta cada vez que llegamos al final del scroll
   obtenerTodas(){
-    this.coinGecko.obtenerListaCryptoTodo(50, this.page, false)   //Metodo del servicio CoinGecko
+    this.coinGecko.obtenerListaCryptoTodo(false)   //Metodo del servicio CoinGecko
     .subscribe(coins=>{                   //El nombre 'coins' puede ser cualquiera
-      this.allCoins.push(...coins);       //Guardamos el array de monedas obetenido en el público
-      this.page++;                        //Incrementamos la páginas   
-      this.infinito.complete();                      
+      this.allCoins.push(...coins);       //Guardamos el array de monedas obetenido en el público              
     });
   }
 
