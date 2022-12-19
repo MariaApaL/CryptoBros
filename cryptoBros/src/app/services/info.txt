@@ -1,0 +1,10 @@
+INDORMACIÓN DE SERVICIOS
+Aquí se definirá las funciones de cada servicio
+
+    SERVICIO COIN-GECKO:
+
+        ¿Para que sirve?
+
+            Conecta la API de CoinGecko y se declaran las funciones fundamentales del servicio, como obtener lista de cryptos, su valor...
+            Documentación en: https://www.coingecko.com/es/api/documentation
+

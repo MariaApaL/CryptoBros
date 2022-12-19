@@ -1,0 +1,11 @@
+INFORMACIÓN SOBRE CARPETA HOME
+
+¿Para qué es?
+
+    Esta carpeta representa solo el contenido de un ion-tab. La barra inferior que nos permite navegar entre página hijas.
+    Dichas páginas se ejecutan a la vez, es decir, están siempre en la caché, por eso su navegación es rápida.
+
+¿Qué son las paginas hijas?
+
+    Las páginas hijas solo son página a las que accedemos a través de otra. En este caso, accedemos a las páginas cartera, inicio y noticias pasando
+    por la página home (EJ: /home/noticias). Dichas páginas se definen en el home-routing-module de esta carpta.

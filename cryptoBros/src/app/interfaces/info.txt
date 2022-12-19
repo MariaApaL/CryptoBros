@@ -1,0 +1,16 @@
+INFORMACIÓN DE LA CARPETA 'INTERFACES'
+
+¿Qué se almacena en esta carpeta?
+    Esta carpeta almacenará todas las interfaces de nuestra apliación.
+
+¿Qué es una interfaz?
+    Las intefaces son plantillas, que usaremos para que a la hora de recibir valores de una
+    API podamos determinar que valores va a tener. Por ejemplo
+
+    -Tenemos una Api que nos devuelve un Json de la información de una 'coin'. Nosotros
+    deberemos crear una interfaz de 'coin' para poder identificarlas mejor a la hora de 
+    recibir el Json. Con esto conseguimos que cuando tengamos una 'coin' podamos colocar
+    un . detras y nos sugiere los valores que podemos obtener.
+
+Intefaz Coin:
+    Es el conjunto de interfaces que recibimos cuando hacer una función http del servicio de la api de CoinGecko.
