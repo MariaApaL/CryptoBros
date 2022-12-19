@@ -9,8 +9,6 @@
 
 <ion-content>
 
-  <ion-list>
-    
     <ion-searchbar placeholder="Buscar"></ion-searchbar>
 
     <ion-select size="large" placeholder="Odenar por" interface="action-sheet">
@@ -21,10 +19,11 @@
     </ion-select>
 
     <ion-list>
-      <ion-item>
-      </ion-item>
+      <app-card-crypto [coins]="allCoins"></app-card-crypto>
     </ion-list>
 
-  </ion-list>
+    <ion-infinite-scroll #infiniteScroll (ionInfinite)="obtenerTodas()">
+      <ion-infinite-scroll-content loadingSpinner="crescent"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
 </ion-content>

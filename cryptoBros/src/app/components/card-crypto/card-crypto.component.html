@@ -1,0 +1,28 @@
+<ion-item>
+  <ion-grid gap="4" fixed>
+      <ion-row size="12" *ngFor="let coin of coins;">
+          <ion-col size="auto" justify-content="center">
+              <ion-avatar size="5">
+                  <img src= {{coin.image}}/>
+              </ion-avatar>
+          </ion-col>
+          <ion-col size="4" justify-content="center">
+              <ion-text>
+                  <p><b>{{coin.name}}</b></p>
+              </ion-text>
+          </ion-col>
+          <ion-col size="4" justify-content="center">
+              <ion-text color="primary">
+                  <p>{{coin.price_change_percentage_24h}}%</p>
+              </ion-text>
+          </ion-col>
+          <ion-col size="auto" justify-content="center">
+              <!--Si es positivo la FLECHA sale verde y hacia arriba-->
+              <ion-icon size="large" *ngIf="coin.price_change_percentage_24h > 0" name="trending-up-sharp" color="success"></ion-icon> 
+              <!--Si es negativo la FLECHA sale roja y hacia abajo-->
+              <ion-icon size="large" *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp"color="danger"></ion-icon>
+              <!--Mostramos todo recorriendo el Array coins-->
+          </ion-col>
+      </ion-row>
+  </ion-grid>                
+</ion-item>
