@@ -15,6 +15,9 @@ export class CryptosPage implements OnInit {
   constructor() { }
 
   ngOnInit() {    
+    
+    
+
   }
 
 }
