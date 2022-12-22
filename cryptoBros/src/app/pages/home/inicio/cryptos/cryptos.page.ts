@@ -23,8 +23,15 @@ export class CryptosPage implements OnInit {
 
   constructor(private coinGecko:CoinGeckoService) { }
 
+<<<<<<< HEAD
   async ngOnInit() {   
     this.obtenerTodas(); 
+=======
+  ngOnInit() {    
+    
+    
+
+>>>>>>> rubik
   }
 
   //Función para buscar por palabra
