@@ -6,6 +6,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FiltroAlfabeticoPipe implements PipeTransform {
 
+  //Ordenar por...
+
   transform(array: Coin[], txt?:string): any {
 
     //Si el orden es nulo o no existe, muestralo todo por defecto
