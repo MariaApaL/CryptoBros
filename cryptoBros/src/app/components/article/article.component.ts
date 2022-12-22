@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Article} from 'src/app/interfaces/new';
 import {InAppBrowser} from '@ionic-native/in-app-browser/ngx';
-import { Platform } from '@ionic/angular';
+import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
+import { ActionSheetController, Platform } from '@ionic/angular';
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -11,9 +12,11 @@ export class ArticleComponent  {
 
   @Input() article!: Article;
   @Input() index!: number;
+  usuario: string = 'aledelarosa2@gmail.com'
+  constructor(private iab: InAppBrowser, private platform:Platform, private actionSheetCtrl:ActionSheetController,
+    private socialSharing:SocialSharing) {}
 
-  constructor(private iab: InAppBrowser, private platform:Platform) {}
-
+  
   openArticle(){
 
     if(this.platform.is('ios') || this.platform.is('android')){
@@ -27,6 +30,33 @@ export class ArticleComponent  {
    
   }
 
-  onClick(){}
+  async onOpenMenu(){
+
+    const actionSheet = this.actionSheetCtrl.create({
+      header:'Opciones',
+      buttons:[{
+        text:'Compartir',
+        icon:'share-outline',
+        handler: () => this.onShareArticle()
+      },
+      {
+        text:'Cancelar',
+        icon:'close-outline',
+        role:'cancel'
+      }
+    ]
+    })
+
+    await (await actionSheet).present()
+  }
+
+  onShareArticle(){
+    this.socialSharing.shareViaEmail(
+      this.article.url,
+      this.article.title,
+      ['aledelarosa2@gmail.com']
+      
+    )
+  }
 
 }
