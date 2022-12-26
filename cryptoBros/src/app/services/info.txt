@@ -8,3 +8,9 @@ Aquí se definirá las funciones de cada servicio
             Conecta la API de CoinGecko y se declaran las funciones fundamentales del servicio, como obtener lista de cryptos, su valor...
             Documentación en: https://www.coingecko.com/es/api/documentation
 
+    SERVICIO APINEWS : 
+
+        ¿Para que sirve?
+
+            Conecta con la API newsAPI y nos devuelve noticias relacionadas con el mundo crypto. La clave api utilizada
+            es 2bc63e87cfcc4d8eb3ddecc6393979b4 para hacer uso del sericio https://newsapi.org/v2/everything?q=crypto&from=2022-11-19&sortBy=publishedAt&apiKey=2bc63e87cfcc4d8eb3ddecc6393979b4

@@ -1,0 +1,3 @@
+INFORMACIÓN CARPETA PIPES
+
+En esta carpeta se almacenarán los filtros. Tiene un módulo de exportación al igual que 'Component'.

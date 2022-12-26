@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from 'src/app/services/news.service';
+import { Article, NewsResponse } from 'src/app/interfaces/new';
 
 @Component({
   selector: 'app-noticias',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoticiasPage implements OnInit {
 
-  constructor() { }
+  public articles: Article[] = [];
+
+
+  constructor(private newService: NewsService ) { }
 
   ngOnInit() {
+    this.newService.getNews()
+    .subscribe(articles => this.articles.push(...articles))
   }
 
 }
+function resp(value: Object): void {
+  throw new Error('Function not implemented.');
+}
+
