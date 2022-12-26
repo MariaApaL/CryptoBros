@@ -1,22 +1,9 @@
 <ion-header>
   <ion-toolbar>
-
-    <!-- Div que contiene el boton para ir atras y el texto de cabecera -->
-    
-    <div id="login-header">
-
-      <!-- Boton Para Volver atras -->
-      <ion-button  slot="start" fill="clear" (click)="goBack()">
-      <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
-    </ion-button>
-   
-
-    <!-- texto de cabecera -->
-      <ion-text color="secundary">
-      <h3>Crear Cuenta</h3>
-    </ion-text>
-    </div>
-  
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home/inicio" text="Atrás"></ion-back-button>
+    </ion-buttons>
+    <ion-title color="primary">Crear Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
