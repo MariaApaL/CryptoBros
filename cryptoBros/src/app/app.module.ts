@@ -9,14 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import{HttpClientModule} from '@angular/common/http';
 
-<<<<<<< HEAD
-
-=======
-// Plugins
-
-import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
->>>>>>> rubik
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +19,7 @@ import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
     HttpClientModule, //Lo declaramos para las APIS
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    InAppBrowser, SocialSharing
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],
 })
