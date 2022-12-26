@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 //Es un componente que ya trae ionic y sirve para navegar entre paginas
 import { NavController } from '@ionic/angular';
@@ -12,7 +13,7 @@ import { NavController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
    
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController,private router: Router) { }
   passwordIcon = 'eye-off';
   passwordType = 'password';
  
@@ -24,6 +25,9 @@ export class LoginPage implements OnInit {
     this.navCtrl.back();
   }
 
+  goToSignup(){
+    this.navCtrl.navigateForward("/signup");
+  }
   enviar() {
     // const email = this.email;
     // const password = this.password;

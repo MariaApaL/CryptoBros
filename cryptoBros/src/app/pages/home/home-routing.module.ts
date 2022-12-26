@@ -28,9 +28,20 @@ const routes: Routes = [
     {
       path:'cartera',
       loadChildren:()=> import('./cartera/cartera.module').then(m => CarteraPageModule)
+    },
+    {
+      path: 'signup',
+      loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+    },
+    {
+      path: 'login',
+      loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
     }    
   ]
-}
+},
+
+  
+
 ];
 
 @NgModule({
