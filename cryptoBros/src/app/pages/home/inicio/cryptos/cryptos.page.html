@@ -22,7 +22,11 @@
       <ion-select-option value="porcentaje">Odenar por Porcentaje</ion-select-option>
     </ion-select>
 
-    <ion-list>
+    <ion-list>      
+      <div class="spinner-center">
+        <ion-spinner name="bubbles" color="primary" *ngIf="isLoading"></ion-spinner>
+      </div>
+
       <app-card-crypto [coins]="allCoins" [textoFiltro]="busqueda" [ordenFiltro]="orden"></app-card-crypto>
     </ion-list>
 

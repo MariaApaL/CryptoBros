@@ -51,7 +51,7 @@ export class CoinGeckoService {
 
   //OBTENER DETALLES DE UNA CRYPTOMONEDA EN ESPECIFICO, POR LA ID
   obtenerDetallesCryptoById(CryptoId:any){
-    return this.http.get<CoinDetail[]>(`https://api.coingecko.com/api/v3/coins/${CryptoId}`, {
+    return this.http.get<CoinDetail>(`https://api.coingecko.com/api/v3/coins/${CryptoId}`, {
       params:{
         localization:false
       }

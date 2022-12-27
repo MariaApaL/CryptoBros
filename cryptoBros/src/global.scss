@@ -24,3 +24,18 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+//Centrar los spinners
+.spinner-center{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.center-all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
