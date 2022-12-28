@@ -9,22 +9,21 @@
 
 <ion-content>
 
-  <ion-list>
-    
-    <ion-searchbar placeholder="Buscar"></ion-searchbar>
+  <!--Buscador-->
+  <ion-searchbar placeholder="Buscar Crypto" (ionChange)="buscarCrypto($event)"></ion-searchbar> 
 
-    <ion-select size="large" placeholder="Odenar por" interface="action-sheet">
-      <ion-select-option value="nombre">Ordenar por nombre</ion-select-option>
-      <ion-select-option value="precio">Ordenar por precio</ion-select-option>
-      <ion-select-option value="precio">Ordenar por relevancia</ion-select-option>
-      <ion-select-option value="precio">Ordenar por porcentaje</ion-select-option>
+    <!--Ordenar por categorías-->
+    <ion-select size="large" placeholder="Odenar por" interface="action-sheet" (ionChange)="OrdenarCrypto($event)">
+      <ion-select-option value="nombreAsc">Odenar por Nombre Asc</ion-select-option>
+      <ion-select-option value="nombreDes">Odenar por Nombre Des</ion-select-option>
+      <ion-select-option value="precioAsc">Odenar por Precio Asc</ion-select-option>
+      <ion-select-option value="precioDes">Odenar por Precio Des</ion-select-option>
+      <ion-select-option value="relevancia">Odenar por Relevancia</ion-select-option>
+      <ion-select-option value="porcentaje">Odenar por Porcentaje</ion-select-option>
     </ion-select>
 
     <ion-list>
-      <ion-item>
-      </ion-item>
+      <app-card-crypto [coins]="allCoins" [textoFiltro]="busqueda" [ordenFiltro]="orden"></app-card-crypto>
     </ion-list>
-
-  </ion-list>
 
 </ion-content>

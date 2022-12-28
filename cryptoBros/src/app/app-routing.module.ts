@@ -21,7 +21,13 @@ const routes: Routes = [
   {
     path: 'cryptos',
     loadChildren: () => import('./pages/home/inicio/cryptos/cryptos.module').then(m => m.CryptosPageModule)
+  },
+  {
+    //URL con parámetro
+    path: 'detalles-crypto/:id', //id como parámetro
+    loadChildren: () => import('./pages/detalles-crypto/detalles-crypto.module').then( m => m.DetallesCryptoPageModule)
   }
+
 
 ];
 

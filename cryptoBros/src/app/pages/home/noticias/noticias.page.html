@@ -1,7 +1,25 @@
-<app-header titulo="Noticias"></app-header>
+<app-header titulo="Noticias" mode="ios" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title>
+            Noticias
+        </ion-title>
+    </ion-toolbar>
+
+</app-header>
 
 <ion-content>
-    <ion-text color="primary">
-        <h1>Esta es la página de Noticias</h1>
-    </ion-text>
+    <ion-card>
+        <ion-item>
+            
+            <ion-label>
+                <ion-card-title >Noticias Crypto</ion-card-title>
+                
+            </ion-label>
+        </ion-item>
+    </ion-card>
+    
+    <!-- // He creado un componente para los articulos y lo llamo directamente aqui*/ -->
+    <app-articles [articles]="articles"></app-articles>
+
+    
 </ion-content>
