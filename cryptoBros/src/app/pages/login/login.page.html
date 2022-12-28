@@ -23,19 +23,22 @@
 <ion-content class="ion-padding">
 
   <form #form="ngForm">
-    <ion-item fill="">
+    <ion-item lines="none">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email"></ion-input>
-    </ion-item> 
-    <br>
-    <ion-item>
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [type]="passwordType" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"></ion-input>
-      <ion-button class="password" slot="end" (click)="passwordOn()">
-        <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
-      </ion-button>
+      <ion-input class="custom" type="email"></ion-input>
     </ion-item>
-    <p>Ya estás registrado? <a (click)="goToSignup()">Inicia sesión aquí</a></p>
+    
+    <ion-item lines="none">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input class="custom" [type]="passwordType">
+        <ion-button slot="end" class="password" (click)="passwordOn()">
+          <ion-icon [name]="passwordIcon"></ion-icon>
+        </ion-button>
+      </ion-input>
+      
+      
+    </ion-item>
+    <p>Ya estás registrado?<p></p><a routerLink="signup">Inicia sesión aquí</a>
     
     <ion-button type="submit" >Submit</ion-button>
 

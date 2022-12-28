@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   }
 
   goToSignup(){
-    this.navCtrl.navigateForward("/signup");
+    this.router.navigate(["/signup"]);
   }
   enviar() {
     // const email = this.email;
