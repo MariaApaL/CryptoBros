@@ -34,8 +34,8 @@
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input class="custom" formControlName="password" [type]="passwordType">
-        <ion-button slot="end" class="password" (click)="passwordOn()">
-          <ion-icon [name]="passwordIcon"></ion-icon>
+        <ion-button class="password" slot="end" (click)="passwordOn()">
+          <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
         </ion-button>
       </ion-input> 
     </ion-item>
@@ -43,8 +43,9 @@
     
     <p>Ya estás registrado? <a routerLink="signup">Inicia sesión aquí</a></p>
     
-    <!-- <ion-button size="full" fill="clear" type="submit" [disabled]="!form.valid" (click)="login()">Submit</ion-button> -->
-
+    <ion-button size="full" type="submit" [disabled]="!form.valid">Submit</ion-button>
+<!--(click)="login()"-->
+<!-- https://www.youtube.com/watch?v=E-aXqVe2K1g&t=346s -->
   </form>
 
 
