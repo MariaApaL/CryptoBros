@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { CardCryptoComponent } from './card-crypto/card-crypto.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +20,8 @@ import { ArticlesComponent } from './articles/articles.component';
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+    ReactiveFormsModule //Lo importamos para el form de validator
   ],
   exports:[
     HeaderComponent,

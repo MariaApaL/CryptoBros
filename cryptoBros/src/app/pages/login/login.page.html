@@ -1,3 +1,4 @@
+
 <ion-header>
   <ion-toolbar>
 
@@ -22,25 +23,27 @@
 
 <ion-content class="ion-padding">
 
-  <form #form="ngForm">
-    <ion-item lines="none">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input class="custom" type="email"></ion-input>
+  
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label class="form-label" position="floating">Email</ion-label>
+      <ion-input class="custom" formControlName="email" type="email"></ion-input>
     </ion-item>
+    <ion-label color="danger" *ngIf="form.get('email').touched && form.get('email').errors?.email">Introduce un email válido</ion-label>
     
-    <ion-item lines="none">
+    <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input class="custom" [type]="passwordType">
+      <ion-input class="custom" formControlName="password" [type]="passwordType">
         <ion-button slot="end" class="password" (click)="passwordOn()">
           <ion-icon [name]="passwordIcon"></ion-icon>
         </ion-button>
-      </ion-input>
-      
-      
+      </ion-input> 
     </ion-item>
-    <p>Ya estás registrado?<p></p><a routerLink="signup">Inicia sesión aquí</a>
+    <ion-label color="danger" *ngIf="form.get('password').touched && form.get('password').errors?.password">Introduce una contraseña válida</ion-label>
     
-    <ion-button type="submit" >Submit</ion-button>
+    <p>Ya estás registrado? <a routerLink="signup">Inicia sesión aquí</a></p>
+    
+    <!-- <ion-button size="full" fill="clear" type="submit" [disabled]="!form.valid" (click)="login()">Submit</ion-button> -->
 
   </form>
 

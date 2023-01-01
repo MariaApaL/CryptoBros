@@ -6,7 +6,7 @@
     <div id="login-header">
 
       <!-- Boton Para Volver atras -->
-      <ion-button  slot="start" fill="clear" (click)="goBack()">
+      <ion-button  slot="start" fill="clear" (click)="navigateToPage()">
       <ion-icon name="chevron-back-outline" slot="icon-only"></ion-icon>
     </ion-button>
    
@@ -20,6 +20,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+  <form #form="ngForm">
+    <ion-item lines="none">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input class="custom" type="email"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input class="custom" [type]="passwordType">
+        <ion-button slot="end" class="password" (click)="passwordOn()">
+          <ion-icon [name]="passwordIcon"></ion-icon>
+        </ion-button>
+      </ion-input>
+      
+      
+    </ion-item>
+    <p>Ya estás registrado? <a routerLink="signup">Inicia sesión aquí</a></p>
+    
+    <ion-button type="submit" >Submit</ion-button>
+
+  </form>
+
 
 </ion-content>
+
