@@ -32,11 +32,7 @@ export class LoginPage implements OnInit {
   goToSignup(){
     this.router.navigate(["/signup"]);
   }
-  enviar() {
-    // const email = this.email;
-    // const password = this.password;
-    console.log("enviando datos");
-   }
+
 
   //Método para el icono del ojo en la contraseña
   passwordOn() {

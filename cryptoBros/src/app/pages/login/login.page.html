@@ -14,7 +14,7 @@
 
     <!-- texto de cabecera -->
       <ion-text color="secundary">
-      <h3>Crear Cuenta</h3>
+      <h3>Iniciar Sesión</h3>
     </ion-text>
     </div>
   
@@ -29,7 +29,8 @@
       <ion-label class="form-label" position="floating">Email</ion-label>
       <ion-input class="custom" formControlName="email" type="email"></ion-input>
     </ion-item>
-    <ion-label color="danger" *ngIf="form.get('email').touched && form.get('email').errors?.email">Introduce un email válido</ion-label>
+    <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
+    <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
     
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
@@ -39,9 +40,13 @@
         </ion-button>
       </ion-input> 
     </ion-item>
-    <ion-label color="danger" *ngIf="form.get('password').touched && form.get('password').errors?.password">Introduce una contraseña válida</ion-label>
-    
-    <p>Ya estás registrado? <a routerLink="signup">Inicia sesión aquí</a></p>
+    <app-error-message message="Contraseña obligatoria" [field]="form.get('password')" error="required"></app-error-message>
+    <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="pattern"></app-error-message>
+    <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="minLength"></app-error-message>
+    <br>
+    <br>
+    <br>
+    <p>No estás registrado? <a routerLink="signup">Crea una cuenta aquí</a></p>
     
     <ion-button size="full" type="submit" [disabled]="!form.valid">Submit</ion-button>
 <!--(click)="login()"-->

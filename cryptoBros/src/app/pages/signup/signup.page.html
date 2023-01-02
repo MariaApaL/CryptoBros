@@ -22,25 +22,31 @@
 
 <ion-content class="ion-padding">
 
-  <form #form="ngForm">
-    <ion-item lines="none">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input class="custom" type="email"></ion-input>
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label class="form-label" position="floating">Email</ion-label>
+      <ion-input class="custom" formControlName="email" type="email"></ion-input>
     </ion-item>
+    <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
+    <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
     
-    <ion-item lines="none">
+    <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input class="custom" [type]="passwordType">
-        <ion-button slot="end" class="password" (click)="passwordOn()">
-          <ion-icon [name]="passwordIcon"></ion-icon>
+      <ion-input class="custom" formControlName="password" [type]="passwordType">
+        <ion-button class="password" slot="end" (click)="passwordOn()">
+          <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
         </ion-button>
-      </ion-input>
-      
-      
+      </ion-input> 
     </ion-item>
-    <p>Ya estás registrado? <a routerLink="signup">Inicia sesión aquí</a></p>
+    <app-error-message message="Contraseña obligatoria" [field]="form.get('password')" error="required"></app-error-message>
+    <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="pattern"></app-error-message>
+    <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="minLength"></app-error-message>
+    <br>
+    <br>
+    <br>
+    <p>Ya estás registrado? <a routerLink="login">Inicia sesión aquí</a></p>
     
-    <ion-button type="submit" >Submit</ion-button>
+    <ion-button size="full" type="submit" [disabled]="!form.valid">Submit</ion-button>
 
   </form>
 

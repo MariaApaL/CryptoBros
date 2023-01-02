@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { SignupPageForm } from './signup.page.form';
 
 
 @Component({
@@ -9,12 +11,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./signup.page.scss'],
 })
 export class SignupPage implements OnInit {
-  constructor(private navCtrl: NavController,private router: Router) { }
+  
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,private navCtrl: NavController,private router: Router) { }
   passwordIcon = 'eye-off';
   passwordType = 'password';
- 
+  
 
   ngOnInit() {
+    this.form = new SignupPageForm(this.formBuilder).createForm();
   }
 
   navigateToPage() {

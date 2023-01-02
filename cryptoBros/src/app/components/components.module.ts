@@ -7,6 +7,8 @@ import { CardCryptoComponent } from './card-crypto/card-crypto.component';
 import { ArticleComponent } from './article/article.component';
 import { ArticlesComponent } from './articles/articles.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+
 
 
 
@@ -15,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CardCryptoComponent,    
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    ErrorMessageComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     CardCryptoComponent,
     ArticlesComponent,
-    ArticleComponent
+    ArticleComponent,
+    ErrorMessageComponent
+    
   ]
 })
 export class ComponentsModule { }
