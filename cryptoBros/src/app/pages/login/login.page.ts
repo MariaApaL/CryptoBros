@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 //Es un componente que ya trae ionic y sirve para navegar entre paginas
 import { NavController } from '@ionic/angular';
+import { LoginPageForm } from './login.page.form';
 
 
 
@@ -12,13 +14,15 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-   
-  constructor(private navCtrl: NavController,private router: Router) { }
+  
+  form: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private navCtrl: NavController,private router: Router) { }
   passwordIcon = 'eye-off';
   passwordType = 'password';
- 
 
   ngOnInit() {
+    this.form = new LoginPageForm(this.formBuilder).createForm();
   }
 
   goBack() {
@@ -26,19 +30,17 @@ export class LoginPage implements OnInit {
   }
 
   goToSignup(){
-    this.navCtrl.navigateForward("/signup");
+    this.router.navigate(["/signup"]);
   }
-  enviar() {
-    // const email = this.email;
-    // const password = this.password;
-    console.log("enviando datos");
-   }
+
 
   //Método para el icono del ojo en la contraseña
   passwordOn() {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
+
+  
 
 
 }
