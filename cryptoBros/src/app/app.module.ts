@@ -16,7 +16,10 @@ import 'chartjs-plugin-zoom';
   declarations: [AppComponent],
   imports: [
     BrowserModule, 
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(
+      {
+      mode:'ios'
+    }), 
     AppRoutingModule,
     HttpClientModule, //Lo declaramos para las APIS
     
