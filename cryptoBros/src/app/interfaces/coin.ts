@@ -26,6 +26,7 @@ export interface Coin {
     atl_date:                         Date;
     roi:                              Roi | null;
     last_updated:                     Date;
+    favorite:                         boolean;
 }
 
 export interface Roi {

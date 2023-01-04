@@ -38,7 +38,7 @@ export class CardCryptoComponent implements OnInit {
 
   setFavorites(coin:Coin){
 
-    this.favorite = !this.favorite;
+    coin.favorite = !coin.favorite;
 
     if(localStorage.getItem(coin.name)){
       localStorage.removeItem(coin.name);
