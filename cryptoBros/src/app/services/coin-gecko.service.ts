@@ -1,4 +1,4 @@
-import { CoinDetail } from './../interfaces/coin';
+import { CoinDetail, CoinChart } from './../interfaces/coin';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Coin } from '../interfaces/coin';
@@ -50,13 +50,23 @@ export class CoinGeckoService {
   }
 
   //OBTENER DETALLES DE UNA CRYPTOMONEDA EN ESPECIFICO, POR LA ID
-  obtenerDetallesCryptoById(CryptoId:any){
-    return this.http.get<CoinDetail[]>(`https://api.coingecko.com/api/v3/coins/${CryptoId}`, {
+  obtenerDetallesCryptoById(cryptoId:any){
+    return this.http.get<CoinDetail>(`https://api.coingecko.com/api/v3/coins/${cryptoId}`, {
       params:{
         localization:false
       }
     });
   }
 
+  //OBTENER CHART DE UNA CRYPTOMONEDA POR ID
+  obtenerChartCryptoById(cryptoId:any, dias:number, interval:string){
+    return this.http.get<CoinChart>(`https://api.coingecko.com/api/v3/coins/${cryptoId}/market_chart?vs_currency=eur&days=1&interval=hour`,{
+      params:{
+        vs_currency: 'eur',
+        days: dias,
+        interval: interval //o 'hourly'
+      }
+    })
+  }
 
 }

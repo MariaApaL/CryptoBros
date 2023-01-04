@@ -10,6 +10,9 @@ import { IonInfiniteScroll } from '@ionic/angular';
 })
 export class CryptosPage implements OnInit {
 
+  //Controlar el spinner
+  public isLoading:boolean = true;
+
   //Dlecara el Array que almacenara las coins
   public allCoins:Coin[] = [];
 
@@ -43,8 +46,8 @@ export class CryptosPage implements OnInit {
     this.coinGecko.obtenerListaCryptoTodo(false)   //Metodo del servicio CoinGecko
     .subscribe(coins=>{                   //El nombre 'coins' puede ser cualquiera
       this.allCoins.push(...coins);       //Guardamos el array de monedas obetenido en el público              
+      this.isLoading = false;
     });
   }
-
 
 }

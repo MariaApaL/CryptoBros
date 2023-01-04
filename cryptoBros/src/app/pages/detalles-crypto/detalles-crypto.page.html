@@ -8,5 +8,104 @@
 </ion-header>
 
 <ion-content>
+  
+  <div class="spinner-center">
+    <ion-spinner name="bubbles" color="primary" *ngIf="isLoading"></ion-spinner>  
+  </div>
+  
+  <!--Es importante comprobar si existe la crypto, para asegurarnos si existe la imagen y demas, y si tiene un valor, ya que tarda en llegarnos. Evita errores de consola-->
+  <div *ngIf="crypto">
+
+    <!--Imagen central de la cryptomenda-->
+    <div class="center-all">
+      <ion-thumbnail class="imagen-logo center">
+        <img [src]="crypto.image.large">
+      </ion-thumbnail>
+    </div>
+
+    <ion-card>
+
+      <ion-card-content>
+        <!--Canvas donde se mostrara la grafica-->
+        <div class="chart-container">
+          <canvas id="myChart"></canvas>
+        </div>
+
+         <!--Boton para mostrar grafica de 7 dias-->
+        <ion-buttons class="ion-justify-content-center">
+          <ion-button id="boton24h">
+            24H
+          </ion-button>          
+          <!--Boton para mostrar grafica de 7 dias-->
+          <ion-button id="boton7d">
+            7D
+          </ion-button>
+        </ion-buttons>
+
+      </ion-card-content>
+
+    </ion-card>
+    
+    <ion-card >
+      <!--Numero del ranking de las cryptomonedas y su nombre-->
+      <ion-card-header>
+        <ion-card-subtitle>Ranking - {{crypto.market_data.market_cap_rank}}º</ion-card-subtitle>
+        <ion-card-title>{{crypto.name.toUpperCase()}}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-accordion-group>
+
+          <ion-accordion>
+            <ion-item slot="header" color="primary">
+              <ion-label><b>Descripción</b></ion-label>
+            </ion-item>
+            <div class="ion-text-justify ion-padding" id="descripcion" slot="content">
+              {{crypto.description.en}}
+            </div>
+          </ion-accordion>
+
+          <ion-accordion>
+            <ion-item slot="header" color="secundary">
+              <ion-label><b>Mercado</b></ion-label>
+            </ion-item>
+            <div class="ion-padding" slot="content">
+              <ion-list>
+                <ion-item>
+                  <ion-label><b>Precio Mercado</b></ion-label>
+                  <ion-label slot="end" color="primary"><h4>{{crypto.market_data.current_price['eur']}}€</h4></ion-label>                  
+                </ion-item>
+                <ion-item>
+                  <ion-label><b>Cambio 24h</b></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_24h_in_currency['eur'] >= 0" slot="end" color="success"><h4>{{crypto.market_data.price_change_percentage_24h_in_currency['eur']}}€</h4></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_24h_in_currency['eur'] < 0" slot="end" color="danger"><h4>{{crypto.market_data.price_change_percentage_24h_in_currency['eur']}}€</h4></ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><b>PCT 24h</b></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_24h >= 0" slot="end" color="success"><h4>{{crypto.market_data.price_change_percentage_24h}}%</h4></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_24h < 0" slot="end" color="danger"><h4>{{crypto.market_data.price_change_percentage_24h}}%</h4></ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><b>PCT 7 días</b></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_7d >= 0" slot="end" color="success"><h4>{{crypto.market_data.price_change_percentage_7d}}%</h4></ion-label>
+                  <ion-label *ngIf="crypto.market_data.price_change_percentage_7d < 0" slot="end" color="danger"><h4>{{crypto.market_data.price_change_percentage_7d}}%</h4></ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label><b>Mkt. PCT Capitalización</b></ion-label>
+                  <ion-label *ngIf="crypto.market_data.market_cap_change_percentage_24h >= 0" slot="end" color="success"><h4>{{crypto.market_data.market_cap_change_percentage_24h}}%</h4></ion-label>
+                  <ion-label *ngIf="crypto.market_data.market_cap_change_percentage_24h < 0" slot="end" color="danger"><h4>{{crypto.market_data.market_cap_change_percentage_24h}}%</h4></ion-label>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-accordion>
+
+        </ion-accordion-group>
+        
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
 
 </ion-content>
