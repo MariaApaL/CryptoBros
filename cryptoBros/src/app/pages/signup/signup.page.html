@@ -1,20 +1,14 @@
 <ion-header>
   <ion-toolbar>
 
-    <!-- Div que contiene el boton para ir atras y el texto de cabecera -->
+    <!-- Div que contiene el boton para ir atras-->
     
     <div id="login-header">
 
       <!-- Boton Para Volver atras -->
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="login" text="Atrás"></ion-back-button>
+        <ion-back-button defaultHref="login" text="Crear Cuenta"></ion-back-button>
       </ion-buttons>
-   
-
-    <!-- texto de cabecera -->
-      <ion-text color="secundary">
-      <h3>Crear Cuenta</h3>
-    </ion-text>
     </div>
   
   </ion-toolbar>
@@ -24,16 +18,22 @@
 
   <form [formGroup]="form">
     <ion-item>
-      <ion-label class="form-label" position="floating">Email</ion-label>
-      <ion-input class="custom" formControlName="email" type="email"></ion-input>
+      <ion-label position="floating" >Nombre de usuario</ion-label>
+      <ion-input formControlName="name" type="email"></ion-input>
+    </ion-item>
+    <app-error-message message="Nombre obligatorio" [field]="form.get('name')" error="required"></app-error-message>
+    <app-error-message message="Debe tener 10 carácteres" [field]="form.get('name')" error="minLength"></app-error-message>
+    <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input formControlName="email" type="email"></ion-input>
     </ion-item>
     <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
     <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
     
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input class="custom" formControlName="password" [type]="passwordType">
-        <ion-button class="password" slot="end" (click)="passwordOn()">
+      <ion-input formControlName="password" [type]="passwordType">
+        <ion-button  slot="end" (click)="passwordOn()">
           <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
         </ion-button>
       </ion-input> 

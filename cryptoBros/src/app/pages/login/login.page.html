@@ -8,14 +8,8 @@
 
       <!-- Boton Para Volver atras -->
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="home/inicio" text="Atrás"></ion-back-button>
+        <ion-back-button defaultHref="home/inicio" text="Iniciar Sesión"></ion-back-button>
       </ion-buttons>
-   
-
-    <!-- texto de cabecera -->
-      <ion-text color="secundary">
-      <h3>Iniciar Sesión</h3>
-    </ion-text>
     </div>
   
   </ion-toolbar>
@@ -25,6 +19,11 @@
 
   
   <form [formGroup]="form">
+    <ion-item>
+      <ion-label>Nombre de usuario</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <app-error-message message="Nombre obligatorio" [field]="form.get('name')" error="required"></app-error-message>
     <ion-item>
       <ion-label class="form-label" position="floating">Email</ion-label>
       <ion-input class="custom" formControlName="email" type="email"></ion-input>
