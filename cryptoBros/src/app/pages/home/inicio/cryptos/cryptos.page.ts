@@ -50,5 +50,4 @@ export class CryptosPage implements OnInit {
     });
   }
 
-
 }

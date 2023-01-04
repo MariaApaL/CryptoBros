@@ -1,27 +1,29 @@
 <ion-item>
   <ion-grid gap="4" fixed>
-      <ion-row (click)="abrirDetallesCrypto(coin.id)" size="12" *ngFor="let coin of coins | filtroBusqueda:textoFiltro | filtroAlfabetico: ordenFiltro">
-          <ion-col size="auto" justify-content="center">
-              <ion-avatar size="5">
+      <ion-row size="12" *ngFor="let coin of coins | filtroBusqueda:textoFiltro | filtroAlfabetico: ordenFiltro">
+          <ion-col size="2" justify-content="center" (click)="abrirDetallesCrypto(coin.id)">
+              <ion-avatar size="2">
                   <img src= {{coin.image}}/>
               </ion-avatar>
           </ion-col>
-          <ion-col size="4" justify-content="center">
+          <ion-col size="3" justify-content="center" (click)="abrirDetallesCrypto(coin.id)">
               <ion-text>
                   <p><b>{{coin.name}}</b></p>
               </ion-text>
           </ion-col>
-          <ion-col size="4" justify-content="center">
-              <ion-text color="primary">
-                  <p>{{coin.price_change_percentage_24h}}%</p>
-              </ion-text>
+          <ion-col size="3" justify-content="center" (click)="abrirDetallesCrypto(coin.id)">
+              <ion-text *ngIf="coin.price_change_percentage_24h >= 0" name="trending-up-sharp" color="success"><p>{{coin.price_change_percentage_24h.toFixed(3)}}%</p></ion-text>
+              <ion-text *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp"color="danger"><p>{{coin.price_change_percentage_24h.toFixed(3)}}%</p></ion-text>
           </ion-col>
-          <ion-col size="auto" justify-content="center">
+          <ion-col size="2" justify-content="center">
               <!--Si es positivo la FLECHA sale verde y hacia arriba-->
-              <ion-icon size="large" *ngIf="coin.price_change_percentage_24h > 0" name="trending-up-sharp" color="success"></ion-icon> 
+              <ion-icon size="large" *ngIf="coin.price_change_percentage_24h >= 0" name="trending-up-sharp" color="success"></ion-icon> 
               <!--Si es negativo la FLECHA sale roja y hacia abajo-->
               <ion-icon size="large" *ngIf="coin.price_change_percentage_24h < 0" name="trending-down-sharp"color="danger"></ion-icon>
               <!--Mostramos todo recorriendo el Array coins-->
+          </ion-col>
+          <ion-col size="2">
+            <ion-icon name="heart" [color]="favorite ? 'danger' : 'white'" (click)="setFavorites(coin)"></ion-icon>
           </ion-col>
       </ion-row>
   </ion-grid>                

@@ -9,13 +9,16 @@ import { DetallesCryptoPageRoutingModule } from './detalles-crypto-routing.modul
 
 import { DetallesCryptoPage } from './detalles-crypto.page';
 
+import {NgChartsModule} from 'ng2-charts';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     DetallesCryptoPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    NgChartsModule
   ],
   declarations: [DetallesCryptoPage]
 })

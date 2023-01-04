@@ -29,9 +29,12 @@
     "@ionic/cli": "^6.20.5",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
+    "chart.js": "^4.1.1",
+    "chartjs-plugin-zoom": "^2.0.0",
     "cordova-plugin-inappbrowser": "^5.0.0",
     "cordova-plugin-x-socialsharing": "^6.0.4",
     "ionicons": "^6.0.3",
+    "ng2-charts": "^4.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

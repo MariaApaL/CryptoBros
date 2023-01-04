@@ -246,3 +246,11 @@ export enum TargetCoinID {
 export enum TrustScore {
     Green = "green",
 }
+
+
+//INTERFAZ DE LOS CHARTS
+export interface CoinChart {
+    prices:        Array<number[]>;
+    market_caps:   Array<number[]>;
+    total_volumes: Array<number[]>;
+}

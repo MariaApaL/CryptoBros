@@ -15,6 +15,8 @@ export class CardCryptoComponent implements OnInit {
   @Input() ordenFiltro?:string; //Orden del Array (Opcional)
   @Input() detallesCrypto:any[] = []; //Orden del Array (Opcional)
 
+  public favorite:boolean = false;
+
   
   constructor(public navCtrl: NavController, private coinGecko:CoinGeckoService) { } //Declaramos navCtrl para que podamos navegar entre páginas
 
@@ -32,5 +34,18 @@ export class CardCryptoComponent implements OnInit {
   */
   abrirDetallesCrypto(cryptoId: any){
     this.navCtrl.navigateForward(`/detalles-crypto/${cryptoId}`);
+  }
+
+  setFavorites(coin:Coin){
+
+    this.favorite = !this.favorite;
+
+    if(localStorage.getItem(coin.name)){
+      localStorage.removeItem(coin.name);
+
+    }else{
+      localStorage.setItem(coin.name, coin.id);
+
+    }    
   }
 }
