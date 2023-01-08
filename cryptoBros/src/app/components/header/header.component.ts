@@ -20,9 +20,4 @@ export class HeaderComponent implements OnInit {
   navigateToPage() {
     this.navCtrl.navigateForward('/login');
   }
-
-  changeMode() {
-  
-    this.defaultIcon = (this.defaultIcon === 'moon-outline') ? 'sunny-outline' : 'moon-outline';
-  }
 }
