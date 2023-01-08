@@ -25,14 +25,6 @@ export class LoginPage implements OnInit {
     this.form = new LoginPageForm(this.formBuilder).createForm();
   }
 
-  goBack() {
-    this.navCtrl.back();
-  }
-
-  goToSignup(){
-    this.router.navigate(["/signup"]);
-  }
-
 
   //Método para el icono del ojo en la contraseña
   passwordOn() {

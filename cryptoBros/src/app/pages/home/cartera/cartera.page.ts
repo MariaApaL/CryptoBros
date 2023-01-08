@@ -8,14 +8,14 @@ import { NavController } from '@ionic/angular';
 })
 export class CarteraPage implements OnInit {
 
-  constructor(private navCtrl: NavController) {}
+  constructor(private navCtrl: NavController,) {}
 
   ngOnInit() {}
   navigateToLogin() {
     this.navCtrl.navigateForward('/login');
   }
 
-  navigateToSignup() {
-    this.navCtrl.navigateForward('../signup');
-  }
+  // navigateToSignup() {
+  //   this.navCtrl.navigateForward('../signup');
+  // }
 }

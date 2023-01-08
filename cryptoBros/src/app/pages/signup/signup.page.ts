@@ -22,20 +22,7 @@ export class SignupPage implements OnInit {
   ngOnInit() {
     this.form = new SignupPageForm(this.formBuilder).createForm();
   }
-
-  navigateToPage() {
-    this.navCtrl.navigateForward('/home');
-  }
-
-  goToSignup(){
-    this.router.navigate(["/login"]);
-  }
-  enviar() {
-    // const email = this.email;
-    // const password = this.password;
-    console.log("enviando datos");
-   }
-
+  
   //Método para el icono del ojo en la contraseña
   passwordOn() {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';

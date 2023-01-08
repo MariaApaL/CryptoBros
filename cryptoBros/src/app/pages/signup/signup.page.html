@@ -18,25 +18,24 @@
 
   <form [formGroup]="form">
     <ion-item>
-      <ion-label position="floating" >Nombre de usuario</ion-label>
-      <ion-input formControlName="name" type="email"></ion-input>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
     </ion-item>
-    <app-error-message message="Nombre obligatorio" [field]="form.get('name')" error="required"></app-error-message>
-    <app-error-message message="Debe tener 10 carácteres" [field]="form.get('name')" error="minLength"></app-error-message>
-    <ion-item>
+    <app-error-message message="Usuario obligatorio" [field]="form.get('name')" error="required"></app-error-message>
+   <ion-item>
     <ion-label position="floating">Email</ion-label>
     <ion-input formControlName="email" type="email"></ion-input>
     </ion-item>
     <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
     <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
-    
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input formControlName="password" [type]="passwordType">
-        <ion-button  slot="end" (click)="passwordOn()">
+        
+      </ion-input> 
+      <ion-button  slot="end" (click)="passwordOn()">
           <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
         </ion-button>
-      </ion-input> 
     </ion-item>
     <app-error-message message="Contraseña obligatoria" [field]="form.get('password')" error="required"></app-error-message>
     <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="pattern"></app-error-message>
@@ -45,10 +44,9 @@
     <br>
     <br>
     <p>Ya estás registrado? <a routerLink="/home/login">Inicia sesión aquí</a></p>
+    <br>
+    <ion-button class="submit" size="full" type="submit" [disabled]="!form.valid">Crear Cuenta</ion-button>
     
-    <ion-button size="full" type="submit" [disabled]="!form.valid">Submit</ion-button>
-    
-
   </form>
 
 
