@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 
-    <!-- Div que contiene el boton para ir atras y el texto de cabecera -->
+    <!-- Div que contiene el boton para ir atras-->
     
     <div id="login-header">
 
@@ -9,12 +9,7 @@
       <ion-buttons slot="start">
         <ion-back-button defaultHref="login" text="Atrás"></ion-back-button>
       </ion-buttons>
-   
-
-    <!-- texto de cabecera -->
-      <ion-text color="secundary">
-      <h3>Crear Cuenta</h3>
-    </ion-text>
+      <ion-title color="primary">Crear Cuenta</ion-title>
     </div>
   
   </ion-toolbar>
@@ -24,19 +19,24 @@
 
   <form [formGroup]="form">
     <ion-item>
-      <ion-label class="form-label" position="floating">Email</ion-label>
-      <ion-input class="custom" formControlName="email" type="email"></ion-input>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+    <app-error-message message="Usuario obligatorio" [field]="form.get('name')" error="required"></app-error-message>
+   <ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input formControlName="email" type="email"></ion-input>
     </ion-item>
     <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
     <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
-    
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input class="custom" formControlName="password" [type]="passwordType">
-        <ion-button class="password" slot="end" (click)="passwordOn()">
+      <ion-input formControlName="password" [type]="passwordType">
+        
+      </ion-input> 
+      <ion-button  slot="end" (click)="passwordOn()">
           <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
         </ion-button>
-      </ion-input> 
     </ion-item>
     <app-error-message message="Contraseña obligatoria" [field]="form.get('password')" error="required"></app-error-message>
     <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="pattern"></app-error-message>
@@ -45,10 +45,9 @@
     <br>
     <br>
     <p>Ya estás registrado? <a routerLink="/home/login">Inicia sesión aquí</a></p>
+    <br>
+    <ion-button class="submit" size="full" type="submit" [disabled]="!form.valid">Crear Cuenta</ion-button>
     
-    <ion-button size="full" type="submit" [disabled]="!form.valid">Submit</ion-button>
-    
-
   </form>
 
 

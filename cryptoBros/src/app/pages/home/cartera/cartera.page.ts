@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cartera',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarteraPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController,) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+  navigateToLogin() {
+    this.navCtrl.navigateForward('/login');
   }
 
+  // navigateToSignup() {
+  //   this.navCtrl.navigateForward('../signup');
+  // }
 }

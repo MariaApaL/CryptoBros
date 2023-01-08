@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Renderer2 } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
@@ -8,13 +8,16 @@ import { NavController } from '@ionic/angular';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() titulo:string = '';
+  @Input() titulo: string = '';
+  defaultIcon: string = "moon-outline"
 
-  constructor(private navCtrl: NavController) {}
 
-  ngOnInit() {}
+
+  constructor(private navCtrl: NavController, private render: Renderer2) { }
+
+  ngOnInit() { }
+
   navigateToPage() {
     this.navCtrl.navigateForward('/login');
   }
-
 }

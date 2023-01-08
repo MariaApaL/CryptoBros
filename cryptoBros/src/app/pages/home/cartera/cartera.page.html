@@ -1,7 +1,15 @@
 <app-header titulo="Cartera"></app-header>
 
 <ion-content>
-    <ion-text color="primary">
-        <h1>Esta es la página de Cartera</h1>
-    </ion-text>
+    <div class="ion-margin">
+    <img style="height: 70%; width: 70%;" src="../../../assets/pictures/hero-img.png" alt="portafolio">
+    <br>
+    <h1><b>Empieza a rastrear tu portafolio de criptomonedas</b></h1>
+    <h4>Con esta forma es mucho más fácil de rastrear y gestionar tus criptomonedas favoritas</h4>
+</div>
+<div class="ion-margin">
+    <ion-button expand="block" routerLink="/home/signup">Crear Cuenta</ion-button>
+    <ion-button expand="block" (click)="navigateToLogin()">Iniciar Sesión</ion-button>
+</div>
+
 </ion-content>
