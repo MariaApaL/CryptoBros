@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import{HttpClientModule} from '@angular/common/http';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import 'chartjs-plugin-zoom';
 
 
@@ -25,7 +25,8 @@ import 'chartjs-plugin-zoom';
     
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    InAppBrowser
   ],
   bootstrap: [AppComponent],
   schemas: [
