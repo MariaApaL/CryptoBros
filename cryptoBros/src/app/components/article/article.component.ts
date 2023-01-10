@@ -14,7 +14,8 @@ export class ArticleComponent  {
   @Input() index!: number;
   
   constructor(private iab: InAppBrowser,
-    private platform: Platform) {}
+    private platform: Platform,
+    private actionSheetCtrl: ActionSheetController) {}
 
   
   openArticle(){
@@ -27,8 +28,32 @@ export class ArticleComponent  {
     }
   }
 
-  onOpenMenu(){}
+  async onOpenMenu(){
+    
+
+    const actionSheet = await this.actionSheetCtrl.create({
+      header:'Opciones',
+      buttons:[{
+        text:'Compartir',
+        icon:'share-outline',
+        handler:()=>this.onShareArticle()
+      },
+    {
+      text:'Favorito',
+      icon:'heart-outline',
+      handler:() => this.onToggleFavorite()
+    },
+  {
+    text:'Cancelar',
+    icon: 'close-outline',
+    role: 'cancel'
+  }]
+    });
+    await actionSheet.present()
+  }
 
   onShareArticle(){}
+
+  onToggleFavorite(){}
 
 }
