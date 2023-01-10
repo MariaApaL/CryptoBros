@@ -54,6 +54,8 @@ export class ArticleComponent  {
 
   onShareArticle(){}
 
-  onToggleFavorite(){}
+  onToggleFavorite(){
+    console.log('Añadido a favorito')
+  }
 
 }
