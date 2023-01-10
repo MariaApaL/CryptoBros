@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import {Article} from 'src/app/interfaces/new';
 import { ActionSheetController, Platform } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import {SocialSharing} from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-article',
@@ -15,7 +16,8 @@ export class ArticleComponent  {
   
   constructor(private iab: InAppBrowser,
     private platform: Platform,
-    private actionSheetCtrl: ActionSheetController) {}
+    private actionSheetCtrl: ActionSheetController,
+    private socialSharing: SocialSharing) {}
 
   
   openArticle(){
@@ -52,7 +54,15 @@ export class ArticleComponent  {
     await actionSheet.present()
   }
 
-  onShareArticle(){}
+  onShareArticle(){
+    this.socialSharing.share(
+      this.article.title,
+      this.article.source.name,
+      null,
+      this.article.url
+    )
+
+  }
 
   onToggleFavorite(){
     console.log('Añadido a favorito')
