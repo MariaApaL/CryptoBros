@@ -19,8 +19,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
         IonicModule,
         LoginPageRoutingModule,
         ReactiveFormsModule,
-        ComponentsModule
-    
+        ComponentsModule   
     ]
 })
 export class LoginPageModule {}

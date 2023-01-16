@@ -22,7 +22,10 @@ export class CardCryptoComponent implements OnInit {
 
   /*La variable navCtrl la creo para poder redirigir a la pagina de "detalles-crypto"*/
 
-  ngOnInit() {}
+  ngOnInit() {
+
+
+  }
 
 
   /*
@@ -47,5 +50,14 @@ export class CardCryptoComponent implements OnInit {
       localStorage.setItem(coin.name, coin.id);
 
     }    
+  }
+
+  isFavorite(coin:Coin):boolean{
+    if(localStorage.getItem(coin.name)){
+      coin.favorite=true;
+      return true;
+    }else{
+      return false;
+    }
   }
 }
