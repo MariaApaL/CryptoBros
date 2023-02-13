@@ -1,7 +1,7 @@
 import { Server } from "./class/server";
 import cors from "cors";
 import bodyparser from "body-parser"
-import usuarioRuta from "./routes/usuario-route";
+import userRoute from "./routes/user-route";
 
 
 let myServer =new Server();
@@ -25,4 +25,4 @@ myServer.app.use(bodyparser.urlencoded({
     limit:"5mb"
 }))
 
-myServer.app.use('/usuario', usuarioRuta)
+myServer.app.use('/user', userRoute)
