@@ -9,4 +9,5 @@ const userRoute = (0, express_1.Router)();
 const u = new userController_1.default();
 userRoute.get('/getData', u.getData);
 userRoute.post('/login', userController_1.default.prototype.login);
+userRoute.post('newUser', userController_1.default.prototype.newUser);
 exports.default = userRoute;
