@@ -1,15 +1,10 @@
 import { Router , Request , Response} from "express";
+import userController from "../controllers/userController";
 
 
 const userRoute = Router();
-userRoute.get('/getData',(req: Request,res: Response)=>{
-
-    console.log(req.query);
-    
-    res.send({
-        hola: 'hola',
-        adios: 'adios'
-    })
-})
+const u = new userController();
+userRoute.get('/getData', u.getData)
+userRoute.post('/login', userController.prototype.login)
 
 export default userRoute;
