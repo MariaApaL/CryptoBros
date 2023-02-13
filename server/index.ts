@@ -25,4 +25,4 @@ myServer.start(()=>{
     console.log("corriendo en el puerto rico "+ myServer.port );
 });
 
-myServer.app.use('/usuario', userRoute)
+myServer.app.use('/user', userRoute)
