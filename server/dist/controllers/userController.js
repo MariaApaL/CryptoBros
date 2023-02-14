@@ -4,39 +4,53 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const user_model_1 = require("../models/user-model");
+const token_1 = __importDefault(require("../class/token"));
 class userController {
-    // getData(req: Request, res:Response){
-    //     console.log(req.query);
-    //     let user = req.query.user;
-    //     if(user){
-    //         return res.status(200).json({
-    //             status:'ok',
-    //             message:"el usuario es"+ user
-    //         });
-    //     }else{
-    //         return res.status(500).json({
-    //             status:'fail',
-    //             message:'no hay usuario'
-    //         })
-    //     }
-    // }
     login(req, res) {
         console.log(req.body);
-        let user = req.body.user;
-        let pwd = req.body.pwd;
-        // Aqui venbdría la comprobación del usuario contra la bbdd
-        if (user) {
-            return res.status(200).json({
-                status: 'ok',
-                message: "el usuario es" + user
-            });
-        }
-        else {
-            return res.status(200).json({
-                status: 'fail',
-                message: 'no hay usuario'
-            });
-        }
+        // usuario que va a intentar acceder
+        let userLogin = req.body.user;
+        let pwdLogin = req.body.pwd;
+        user_model_1.User.findOne({ user: userLogin }, null, null, (err, userDB) => {
+            if (err || !userDB) {
+                return res.status(200).json({
+                    status: 'Fail',
+                    message: 'Usuario y/o contraseña incorrectos'
+                });
+            }
+            else {
+                // Comprobamos que el usuario y la contraseña coincidan con los de un usuario de nuestra BBDD
+                let pwdDB = userDB.pwd;
+                let userSent = new user_model_1.User();
+                userSent.user = userDB.user;
+                userSent._id = userDB._id;
+                if (bcrypt_1.default.compareSync(pwdLogin, pwdDB)) {
+                    return res.status(200).json({
+                        status: 'ok',
+                        message: `El usuario existe y es ${userDB.user}`,
+                        token: token_1.default.generateToken(userSent)
+                    });
+                }
+                else {
+                    return res.status(200).json({
+                        status: 'Fail',
+                        message: 'Usuario y/o contraseña incorrectos'
+                    });
+                }
+            }
+        });
+    }
+    getProfile(req, res) {
+        let email = req.body.user.email;
+        let userSent = new user_model_1.User();
+        userSent.user = req.body.user;
+        userSent._id = req.body.user._id;
+        return res.status(200).json({
+            status: 'ok',
+            message: `El usuario existe y su email es ${email}`,
+            token: token_1.default.generateToken(userSent)
+        });
     }
     newUser(req, res) {
         let pwdPlana = req.body.pwd;
@@ -47,7 +61,7 @@ class userController {
             pwd: hash,
             age: req.body.age
         };
-        User.create(newUser, (err, userDB) => {
+        user_model_1.User.create(newUser, (err, userDB) => {
             if (err) {
                 return res.status(200).json({
                     status: 'fail',
@@ -58,8 +72,7 @@ class userController {
             else {
                 return res.status(200).json({
                     status: 'ok',
-                    message: 'usuario creado correctamente',
-                    userDB
+                    message: 'usuario creado correctamente'
                 });
             }
         });

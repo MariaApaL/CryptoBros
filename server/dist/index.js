@@ -7,6 +7,7 @@ const server_1 = require("./class/server");
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const user_route_1 = __importDefault(require("./routes/user-route"));
+const mongoose_1 = __importDefault(require("mongoose"));
 let myServer = new server_1.Server();
 myServer.app.use(body_parser_1.default.json({
     limit: "5mb"
@@ -19,7 +20,21 @@ myServer.app.use((0, cors_1.default)({
     credentials: true,
     origin: true
 }));
+myServer.app.use('/user', user_route_1.default);
 myServer.start(() => {
     console.log("corriendo en el puerto rico " + myServer.port);
 });
-myServer.app.use('/user', user_route_1.default);
+// Conexion a MongoDb con mi usuario y contraseña
+mongoose_1.default.connect('mongodb+srv://rubiks:root@cluster0.un1a0x8.mongodb.net/Prueba', 
+// {   useNewUrlParser:true,
+//     useUnifiedTopology:true,
+//     useCreateIndex: true}
+(err) => {
+    if (err) {
+        console.log("error", err);
+        throw err;
+    }
+    else {
+        console.log("Conectado a la bbdd con exito");
+    }
+});

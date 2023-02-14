@@ -2,6 +2,8 @@ import { Server } from "./class/server";
 import cors from "cors";
 import bodyparser from "body-parser"
 import userRoute from "./routes/user-route";
+import mongoose from "mongoose";
+
 
 
 let myServer = new Server();
@@ -21,8 +23,25 @@ myServer.app.use(cors({
 })
 )
 
+myServer.app.use('/user', userRoute)
+
 myServer.start(()=>{ 
     console.log("corriendo en el puerto rico "+ myServer.port );
 });
 
-myServer.app.use('/user', userRoute)
+// Conexion a MongoDb con mi usuario y contraseña
+mongoose.connect('mongodb+srv://rubiks:root@cluster0.un1a0x8.mongodb.net/Prueba',
+
+// {   useNewUrlParser:true,
+//     useUnifiedTopology:true,
+//     useCreateIndex: true}
+    (err)=>{
+        if(err){
+            console.log("error",err)
+            throw err
+        }else{
+            console.log("Conectado a la bbdd con exito")
+        }
+    })
+
+

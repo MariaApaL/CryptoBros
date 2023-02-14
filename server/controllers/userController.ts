@@ -1,41 +1,55 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-
+import { User } from '../models/user-model';
+import Token from "../class/token";
 class userController{
-
-    // getData(req: Request, res:Response){
-    //     console.log(req.query);
-    //     let user = req.query.user;
-    //     if(user){
-    //         return res.status(200).json({
-    //             status:'ok',
-    //             message:"el usuario es"+ user
-    //         });
-    //     }else{
-    //         return res.status(500).json({
-    //             status:'fail',
-    //             message:'no hay usuario'
-    //         })
-    //     }
-    // }
 
     login(req: Request, res:Response){
         console.log(req.body);
-        let user = req.body.user;
-        let pwd = req.body.pwd
+        // usuario que va a intentar acceder
+        let userLogin = req.body.user;
+        let pwdLogin = req.body.pwd
 
-        // Aqui venbdría la comprobación del usuario contra la bbdd
-        if(user){
-            return res.status(200).json({
-                status:'ok',
-                message:"el usuario es"+ user
-            });
-        }else{
-            return res.status(200).json({
-                status:'fail',
-                message:'no hay usuario'
-            })
-        }
+        User.findOne({user: userLogin}, null,null,(err,userDB)=>{
+            if(err || !userDB){
+                return res.status(200).json({
+                    status: 'Fail',
+                    message:'Usuario y/o contraseña incorrectos'
+                })
+            }else{
+                // Comprobamos que el usuario y la contraseña coincidan con los de un usuario de nuestra BBDD
+                let pwdDB = userDB.pwd;
+                let userSent = new User();
+                userSent.user = userDB.user;
+                userSent._id = userDB._id;
+                if(bcrypt.compareSync(pwdLogin, pwdDB)){
+                    return res.status(200).json({
+                        status:'ok',
+                        message:`El usuario existe y es ${userDB.user}`,
+                        token: Token.generateToken(userSent)
+                    })
+                }else{
+                    return res.status(200).json({
+                        status:'Fail',
+                        message:'Usuario y/o contraseña incorrectos'
+                    })
+                }
+            }
+        })
+    }
+
+    getProfile(req: any, res:Response){
+        let email = req.body.user.email;
+        let userSent = new User()
+
+        userSent.user = req.body.user;
+        userSent._id = req.body.user._id;
+
+        return res.status(200).json({
+            status:'ok',
+            message:`El usuario existe y su email es ${email}`,
+            token: Token.generateToken(userSent)
+        })
     }
 
     newUser(req:Request, res:Response){
@@ -59,8 +73,7 @@ class userController{
                 }else{
                     return res.status(200).json({
                         status:'ok',
-                        message:'usuario creado correctamente',
-                        userDB
+                        message:'usuario creado correctamente'
                     })
                 }
             })
