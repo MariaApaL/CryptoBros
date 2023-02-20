@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
   }
 
 
-  //Método para el icono del ojo en la contraseña
+  // Método para el icono del ojo en la contraseña
   passwordOn() {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
