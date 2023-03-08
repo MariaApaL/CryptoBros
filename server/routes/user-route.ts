@@ -1,19 +1,14 @@
 import { Router , Request , Response} from "express";
-import userController from "../controllers/user-controller";
+import userController from "../controllers/userController";
+import { verifyToken } from '../middlewares/verifyToken';
+
 
 const userRoute = Router();
+const u = new userController();
+// userRoute.get('/getData', u.getData)
 
-// userRoute.get("/login",(req: Request,res: Response)=>{
-
-//     console.log(req.query);
-    
-//     res.send({
-//         status:200,
-//         message:"Todo guay"
-//     })
-// })
-
-userRoute.get("/getDatos",userController.prototype.getDatos);
-userRoute.post("/login",userController.prototype.login);
+userRoute.post('/login', userController.prototype.login)
+userRoute.post('/newUser', userController.prototype.newUser)
+userRoute.get('/getProfile', verifyToken, userController.prototype.getProfile)
 
 export default userRoute;

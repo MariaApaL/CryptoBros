@@ -8,7 +8,7 @@ export class Server{
         this.app = express();
     }
 
-    start(funcion: any){
+    start(funcion: ()=>void){
         this.app.listen(this.port,funcion)
     }
 }
