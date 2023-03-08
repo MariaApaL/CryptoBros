@@ -25,7 +25,7 @@ myServer.start(() => {
     console.log("corriendo en el puerto rico " + myServer.port);
 });
 // Conexion a MongoDb con mi usuario y contraseña
-mongoose_1.default.connect('mongodb+srv://rubiks:root@cluster0.un1a0x8.mongodb.net/Prueba', 
+mongoose_1.default.connect('mongodb+srv://root:B8Z2TEvqtoFACg4P@approutes.yj6s2i4.mongodb.net/?retryWrites=true&w=majority', 
 // {   useNewUrlParser:true,
 //     useUnifiedTopology:true,
 //     useCreateIndex: true}
