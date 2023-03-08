@@ -18,12 +18,12 @@ const user_model_1 = require("../models/user-model");
 const verifyToken = (req, res, next) => {
     let userToken = req.get('Authorization') || '';
     if (userToken !== '') {
-        userToken = userToken.split('Bearer ')[1];
+        userToken = userToken.split('Bearer ')[1]; //Borra la palabra Bearer del token
     }
     token_1.default.compareToken(userToken).then((decoded) => __awaiter(void 0, void 0, void 0, function* () {
-        const myUser = decoded.user._id;
-        const userDB = yield user_model_1.User.findById(myUser);
-        if (!userDB) {
+        const myUser = decoded.user._id; //Obtiene el id del token
+        const userDB = yield user_model_1.User.findById(myUser); //Obtenemos el usuario
+        if (!userDB) { //Si no obtiene ningun usuario, devuelve un 500
             res.status(500).json({
                 status: 'error',
                 message: 'El usuario no existe'
@@ -34,10 +34,10 @@ const verifyToken = (req, res, next) => {
         }
         next();
     })).catch(err => {
-        console.log('Error aquí', err);
+        console.log('Error aquí...', err); //Error si el token es nulo o no es válido
         res.status(500).json({
             status: 'error',
-            message: err
+            message: err + ' ' + userToken
         });
     });
 };

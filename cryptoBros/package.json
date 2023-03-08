@@ -31,6 +31,7 @@
     "@ionic-native/social-sharing": "^5.36.0",
     "@ionic/angular": "^6.1.9",
     "@ionic/cli": "^6.20.5",
+    "@ionic/lab": "^3.2.15",
     "@ionic/storage": "^3.0.6",
     "@ionic/storage-angular": "^3.0.6",
     "chart.js": "^4.1.1",

@@ -11,5 +11,5 @@ const u = new userController_1.default();
 // userRoute.get('/getData', u.getData)
 userRoute.post('/login', userController_1.default.prototype.login);
 userRoute.post('/newUser', userController_1.default.prototype.newUser);
-userRoute.get('/getProfile', verifyToken_1.verifyToken, userController_1.default.prototype.getProfile);
+userRoute.get('/getProfile', verifyToken_1.verifyToken, userController_1.default.prototype.getProfile); //Solo puedes acceder si tienes un token verificado
 exports.default = userRoute;

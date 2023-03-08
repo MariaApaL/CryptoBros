@@ -9,6 +9,6 @@ const u = new userController();
 
 userRoute.post('/login', userController.prototype.login)
 userRoute.post('/newUser', userController.prototype.newUser)
-userRoute.get('/getProfile', verifyToken, userController.prototype.getProfile)
+userRoute.get('/getProfile', verifyToken, userController.prototype.getProfile) //Solo puedes acceder si tienes un token verificado
 
 export default userRoute;

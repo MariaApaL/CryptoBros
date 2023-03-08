@@ -11,10 +11,10 @@ class userController{
         let pwdLogin = req.body.pwd
 
         User.findOne({user: userLogin}, null,null,(err,userDB)=>{
-            if(err || !userDB){
-                return res.status(200).json({
+            if(err || !userDB){ //Comprueba si existe el usuario en la BBDD
+                return res.status(401).json({ //Si no lo encuentra envia un error 401
                     status: 'Fail',
-                    message:'Usuario y/o contraseña incorrectos'
+                    message:'Usuario no encontrado'
                 })
             }else{
                 // Comprobamos que el usuario y la contraseña coincidan con los de un usuario de nuestra BBDD
@@ -22,23 +22,23 @@ class userController{
                 let userSent = new User();
                 userSent.user = userDB.user;
                 userSent._id = userDB._id;
-                if(bcrypt.compareSync(pwdLogin, pwdDB)){
-                    return res.status(200).json({
+                if(bcrypt.compareSync(pwdLogin, pwdDB)){//Comprueba si la contraseña es la misma
+                    return res.status(200).json({ //Si es la misma devuelve mensaje y token
                         status:'ok',
-                        message:`El usuario existe y es ${userDB.user}`,
+                        message:`Contraseña correcta para el usuario ${userDB.user}`,
                         token: Token.generateToken(userSent)
                     })
                 }else{
-                    return res.status(200).json({
+                    return res.status(401).json({ //Si no, devuelve un 401
                         status:'Fail',
-                        message:'Usuario y/o contraseña incorrectos'
+                        message:'Contraseña incorrecta'
                     })
                 }
             }
         })
     }
 
-    getProfile(req: any, res:Response){
+    getProfile(req: Request, res:Response){
         let email = req.body.user.email;
         let userSent = new User()
 
@@ -48,7 +48,7 @@ class userController{
         return res.status(200).json({
             status:'ok',
             message:`El usuario existe y su email es ${email}`,
-            token: Token.generateToken(userSent)
+            token: Token.generateToken(userSent) //Devolvemos el token
         })
     }
 

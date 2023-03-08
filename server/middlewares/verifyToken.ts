@@ -6,14 +6,14 @@ export const verifyToken=(req:any,res:any, next:NextFunction)=>{
     let userToken:string = req.get('Authorization') || '';
 
     if(userToken !== ''){
-        userToken = userToken.split('Bearer ')[1]
+        userToken = userToken.split('Bearer ')[1] //Borra la palabra Bearer del token
     }
 
     Token.compareToken(userToken).then(async (decoded:any)=>{
-        const myUser = decoded.user._id;
-        const userDB = await User.findById(myUser);
+        const myUser = decoded.user._id; //Obtiene el id del token
+        const userDB = await User.findById(myUser); //Obtenemos el usuario
 
-        if(!userDB){
+        if(!userDB){ //Si no obtiene ningun usuario, devuelve un 500
             res.status(500).json({
                 status:'error',
                 message:'El usuario no existe'
@@ -23,10 +23,10 @@ export const verifyToken=(req:any,res:any, next:NextFunction)=>{
         }
         next()
     }).catch(err =>{
-        console.log('Error aquí', err);
+        console.log('Error aquí...', err); //Error si el token es nulo o no es válido
         res.status(500).json({
             status:'error',
-            message: err
+            message: err + ' ' + userToken
         })
     })
 }

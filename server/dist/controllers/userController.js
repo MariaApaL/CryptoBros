@@ -13,10 +13,10 @@ class userController {
         let userLogin = req.body.user;
         let pwdLogin = req.body.pwd;
         user_model_1.User.findOne({ user: userLogin }, null, null, (err, userDB) => {
-            if (err || !userDB) {
-                return res.status(200).json({
+            if (err || !userDB) { //Comprueba si existe el usuario en la BBDD
+                return res.status(401).json({
                     status: 'Fail',
-                    message: 'Usuario y/o contraseña incorrectos'
+                    message: 'Usuario no encontrado'
                 });
             }
             else {
@@ -25,17 +25,17 @@ class userController {
                 let userSent = new user_model_1.User();
                 userSent.user = userDB.user;
                 userSent._id = userDB._id;
-                if (bcrypt_1.default.compareSync(pwdLogin, pwdDB)) {
+                if (bcrypt_1.default.compareSync(pwdLogin, pwdDB)) { //Comprueba si la contraseña es la misma
                     return res.status(200).json({
                         status: 'ok',
-                        message: `El usuario existe y es ${userDB.user}`,
+                        message: `Contraseña correcta para el usuario ${userDB.user}`,
                         token: token_1.default.generateToken(userSent)
                     });
                 }
                 else {
-                    return res.status(200).json({
+                    return res.status(401).json({
                         status: 'Fail',
-                        message: 'Usuario y/o contraseña incorrectos'
+                        message: 'Contraseña incorrecta'
                     });
                 }
             }
@@ -49,7 +49,7 @@ class userController {
         return res.status(200).json({
             status: 'ok',
             message: `El usuario existe y su email es ${email}`,
-            token: token_1.default.generateToken(userSent)
+            token: token_1.default.generateToken(userSent) //Devolvemos el token
         });
     }
     newUser(req, res) {

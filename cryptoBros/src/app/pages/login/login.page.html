@@ -7,9 +7,10 @@
 
       <!-- Boton Para Volver atras -->
       <ion-buttons slot="start">
-        <ion-back-button defaultHref="home/inicio" text="Atrás"></ion-back-button>
+        <ion-back-button defaultHref="/" text="Atrás"></ion-back-button>
       </ion-buttons>
-      <ion-title color="primary">Iniciar Sesión</ion-title>
+      <ion-title *ngIf="login" color="primary">Iniciar Sesión</ion-title>
+      <ion-title *ngIf="!login" color="primary">Registrarse</ion-title>
     </div>
 
   </ion-toolbar>
@@ -17,38 +18,48 @@
 
 <ion-content class="ion-padding">
 
+  <ion-segment value="login" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="login">
+      <ion-label>Login</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="register">
+      <ion-label>Register</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
 
   <form [formGroup]="form">
     <ion-item>
       <ion-label position="floating">Usuario</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
+      <ion-input formControlName="username" type="text"></ion-input>
     </ion-item>
-    <app-error-message message="Usuario obligatorio" [field]="form.get('name')" error="required"></app-error-message>
-    <ion-item>
+    <ion-item *ngIf="!login">
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email" type="email"></ion-input>
     </ion-item>
-    <app-error-message message="Email obligatorio" [field]="form.get('email')" error="required"></app-error-message>
-    <app-error-message message="Email inválido" [field]="form.get('email')" error="email"></app-error-message>
+    <ion-item *ngIf="!login">
+      <ion-label position="floating">Age</ion-label>
+      <ion-input formControlName="age" type="number"></ion-input>
+    </ion-item>
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input formControlName="password" [type]="passwordType">
+      <ion-input formControlName="pwd" [type]="passwordType">
       </ion-input>
       <ion-button slot="end" (click)="passwordOn()">
         <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
       </ion-button>
     </ion-item>
-    <app-error-message message="Contraseña obligatoria" [field]="form.get('password')"
-      error="required"></app-error-message>
-    <app-error-message message="Contraseña inválida" [field]="form.get('password')" error="pattern"></app-error-message>
-    <app-error-message message="Contraseña inválida" [field]="form.get('password')"
-      error="minLength"></app-error-message>
-    <br>
-    <br>
-    <br>
-    <p>No estás registrado? <a routerLink="/home/signup">Crea una cuenta aquí</a></p>
-    <br>
-    <ion-button class="submit" size="full" type="submit" [disabled]="!form.valid">Acceder</ion-button>
+    <ion-item *ngIf="!login">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input formControlName="rpwd" [type]="passwordType">
+      </ion-input>
+      <ion-button slot="end" (click)="passwordOn()">
+        <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-button *ngIf="login" class="submit ion-margin-top" size="full"  (click)="onLogin()">Iniciar</ion-button>
+    <ion-button *ngIf="!login" class="submit ion-margin-top" size="full"  (click)="onRegister()">Registrar</ion-button>
   </form>
 
 

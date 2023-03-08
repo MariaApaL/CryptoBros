@@ -18,6 +18,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() { }
 
   navigateToPage() {
-    this.navCtrl.navigateForward('/login');
+    this.navCtrl.navigateForward('/profile');
   }
 }
