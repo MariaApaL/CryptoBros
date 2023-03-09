@@ -30,8 +30,8 @@ myServer.start(()=>{
 });
 
 // Conexion a MongoDb con mi usuario y contraseña
-mongoose.connect('mongodb+srv://root:B8Z2TEvqtoFACg4P@approutes.yj6s2i4.mongodb.net/?retryWrites=true&w=majority',
-
+mongoose.connect('mongodb+srv://root:root@cryptobros.kkdzk90.mongodb.net/?retryWrites=true&w=majority',
+// mongodb+srv://root:B8Z2TEvqtoFACg4P@approutes.yj6s2i4.mongodb.net/?retryWrites=true&w=majority
 // {   useNewUrlParser:true,
 //     useUnifiedTopology:true,
 //     useCreateIndex: true}
