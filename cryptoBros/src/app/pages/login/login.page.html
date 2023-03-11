@@ -32,34 +32,48 @@
     <ion-item>
       <ion-label position="floating">Usuario</ion-label>
       <ion-input formControlName="username" type="text"></ion-input>
+      <app-error-message *ngIf="!login" [field]="form.controls.username" [empty]="true" message="Nombre Obligatorio"></app-error-message>
+      <app-error-message *ngIf="!login" [field]="form.controls.username" [valid]="true" message="Formato errorneo"></app-error-message>
+      <ion-note *ngIf="this.errorLogHidden" id="errorOnLog" color="danger">{{errorLog}}</ion-note>
     </ion-item>
     <ion-item *ngIf="!login">
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email" type="email"></ion-input>
+      <app-error-message [field]="form.controls.email" [empty]="true" message="Mail obrigatorio"></app-error-message>
+      <app-error-message [field]="form.controls.email" [valid] message="Formato errorneo"></app-error-message>
     </ion-item>
+   
+    
+    
     <ion-item *ngIf="!login">
-      <ion-label position="floating">Age</ion-label>
+      <ion-label position="floating">Edad</ion-label>
       <ion-input formControlName="age" type="number"></ion-input>
+      <app-error-message [field]="form.controls.age" [empty]="true" message="Edad Obligatoria"></app-error-message>
+      <app-error-message [field]="form.controls.age" [valid]="true" message="Edad no válida"></app-error-message>
     </ion-item>
+    <!-- <app-error-message [field]="form.get('email')" message="maricon"></app-error-message> -->
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input formControlName="pwd" [type]="passwordType">
       </ion-input>
+      <app-error-message *ngIf="!login" [field]="form.controls.pwd" [empty]="true" message="Contrase Obligatoria"></app-error-message>
+      <app-error-message *ngIf="!login" [field]="form.controls.pwd" [valid]="true" message="Debe tener min 8 caracteres, 1 caracter especial y 1 mayúscula"></app-error-message>
       <ion-button slot="end" (click)="passwordOn()">
         <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
       </ion-button>
     </ion-item>
     <ion-item *ngIf="!login">
-      <ion-label position="floating">Contraseña</ion-label>
+      <ion-label position="floating">Repetir Contraseña</ion-label>
       <ion-input formControlName="rpwd" [type]="passwordType">
       </ion-input>
+      <app-error-message [field]="form.controls.pwd" [fieldExtra]="form.controls.rpwd" [samepass]="true" message="No es igual"></app-error-message>
       <ion-button slot="end" (click)="passwordOn()">
         <ion-icon id="eye-icon" [name]="passwordIcon"></ion-icon>
       </ion-button>
     </ion-item>
 
-    <ion-button *ngIf="login" class="submit ion-margin-top" size="full" (click)="onLogin()">Iniciar</ion-button>
-    <ion-button *ngIf="!login" class="submit ion-margin-top" size="full" (click)="onRegister()">Registrar</ion-button>
+    <ion-button *ngIf="login" class="submit ion-margin-top" size="full" (click)="onLogin()" [disabled]="loginDisabled()">Iniciar</ion-button>
+    <ion-button *ngIf="!login" class="submit ion-margin-top" size="full" (click)="onRegister()" [disabled]="!this.form.valid">Registrar</ion-button>
   </form>
 
 

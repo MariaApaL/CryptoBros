@@ -1,10 +1,7 @@
 import { AuthService } from './../../services/auth.service';
-import { Component, OnInit, Pipe } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-//Es un componente que ya trae ionic y sirve para navegar entre paginas
-import { NavController } from '@ionic/angular';
 
 
 
@@ -19,26 +16,34 @@ export class LoginPage implements OnInit {
 
   login:boolean = true;
 
+  errorLog:string;
+  errorLogHidden:boolean = false;
   
-  constructor(private formBuilder: FormBuilder, 
-    private navCtrl: NavController,
-    private router: Router,
+  constructor(private router: Router,
     private auth:AuthService) { 
 
     this.form = new FormGroup({
-      username: new FormControl('', Validators.required),
+      username: new FormControl('',[Validators.required, Validators.maxLength(10)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      age: new FormControl('',Validators.required),
-      pwd: new FormControl('', Validators.required),
-      rpwd: new FormControl('', Validators.required)
+      age: new FormControl('',[Validators.required, Validators.min(18), Validators.max(110)]),
+      pwd: new FormControl('', [Validators.required, Validators.pattern(/^(?=(?:.*\d))(?=.*[A-Z])(?=.*[a-z])(?=.*[.,*!?¿¡/#$%&])\S{8,30}$/
+      )]),
+      rpwd: new FormControl('', [Validators.required])
     })
   }
+
+  email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   
   passwordIcon = 'eye-off';
   passwordType = 'password';
 
+
+
+
   ngOnInit() {
-    // this.form = new LoginPageForm(this.formBuilder).createForm();
+    console.log('hola');
+    console.log(this.form.controls.email.touched);
+     
   }
 
   // return this.formBuilder.group({
@@ -71,15 +76,21 @@ export class LoginPage implements OnInit {
     const username = this.form.controls.username.value;
     const pwd = this.form.controls.pwd.value;
 
+   
+
     this.auth.onLoginUser(username, pwd).subscribe({
       next: res => {
-        console.log(res);
+        console.log(res.message);
+        this.errorLogHidden = false;
         localStorage.setItem('token', res.token); //Guardamos el token el el LocalStorage
         this.router.navigate(['/profile'], {replaceUrl:true}); //Replace url borra el historial para evitar errores de navegacion
       },
-      error: err => {console.error(err);
+      error: async err => {console.error(err);
+        this.errorLog = await err.error.message;
+        this.errorLogHidden = true;
       }
     })
+  
   }
 
   onRegister(){
@@ -100,9 +111,17 @@ export class LoginPage implements OnInit {
 
     }else{
       console.error('Faltan valores');
-      
+      this.form.get('email').touched
     }
     
+  }
+
+  loginDisabled(){
+    if(this.form.controls.username.valid && this.form.controls.pwd.value != ''){
+      return false
+    }
+
+    return true;
   }
 
 

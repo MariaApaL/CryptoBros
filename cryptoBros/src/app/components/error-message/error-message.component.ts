@@ -8,18 +8,53 @@ import { FormGroup } from '@angular/forms';
 })
 export class ErrorMessageComponent implements OnInit {
 
-  @Input() message:string;
+  @Input() message: string;
   @Input() field: FormGroup;
-  @Input() error: string;
+  @Input() fieldExtra ?: FormGroup;
+  @Input() samepass?: boolean;
+  @Input() empty?: boolean;
+  @Input() valid?: boolean;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  mostrarError(){
-    if(this.field.touched && this.field.errors?.[this.error]){
-      return true;
+  
+
+  showErrors(){
+    if(this.samepass){
+      return this.samePwd();
+
+    }else if(this.empty){
+      return this.showEmptyError();
+      
+    }else if(this.valid){
+      return this.showValidError();
+
+    }else{
+      return false;
     }
-    return false;
+  }
+
+
+  samePwd() {
+    return this.field.value === this.fieldExtra.value ? false : true;
+  }
+
+  showEmptyError() {
+
+    if (this.field.touched && this.field.value == '') {
+      return true;
+    } else {
+      return false
+    }
+  }
+
+  showValidError() {
+    if (this.field.touched && !this.field.valid && this.field.value != '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }
